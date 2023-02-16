@@ -1,40 +1,32 @@
 function game() {
-    let dead = 0;
-    let lost = 0;
+
+    let dead = document.getElementById('dead');
+    let lost = document.getElementById('lost');
+
     for (let i=1; i < 10; i++) {
-        getHole = i => document.getElementById(`hole${i}`)        
+        let getHole = i => document.getElementById(`hole${i}`)
+                      
         document.getElementById(`hole${i}`).onclick = function() {
+ 
             if (getHole(i).className.includes('hole_has-mole')) {
-                dead++
-                document.getElementById('dead').innerText = dead
-
-                if (dead === 10) {                    
+                dead.textContent = Number(dead.textContent) + 1;
+                if (Number(dead.textContent) === 10) {
                     alert('Вы победили!')
-                    let dead = 0;
-                    let lost = 0;
-                    document.getElementById('dead').innerText = dead
-                    document.getElementById('lost').innerText = lost
-                    return countEvents()         
-                    }                
-            }            
+                    dead.textContent = 0;
+                    lost.textContent = 0;          
+                }   
+            }
+
             else {
-                lost++
-                document.getElementById('lost').innerText = lost
-                            
-                if (lost === 5) {
+                lost.textContent = Number(lost.textContent) + 1;
+                if (Number(lost.textContent) === 5) {
                     alert('Вы проиграли :(')
-                    let dead = 0;
-                    let lost = 0;
-                    document.getElementById('dead').innerText = dead
-                    document.getElementById('lost').innerText = lost
-                    return countEvents()                       
-                    }                 
-            };   
+                    dead.textContent = 0;
+                    lost.textContent = 0;    
+                }
+            }                       
         };
-    
-
     };
-
 }
 
 game()
